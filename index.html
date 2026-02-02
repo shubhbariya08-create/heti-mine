@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Hetsi 🤍</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:radial-gradient(circle at top,#ffe6f0,#fff);
+  height:100vh;
+  overflow:hidden;
+}
+
+/* HEART PARTICLES */
+.heart{
+  position:absolute;
+  color:rgba(255,120,170,.6);
+  font-size:14px;
+  animation:float 8s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(110vh);opacity:0}
+  10%{opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
+
+/* SCREENS */
+.screen{
+  display:none;
+  height:100vh;
+  width:100%;
+  padding:20px;
+  text-align:center;
+  position:relative;
+}
+.screen.active{display:flex;flex-direction:column;align-items:center;justify-content:center}
+
+h1{
+  font-family:'Pacifico',cursive;
+  color:#e75480;
+}
+p{color:#666}
+
+button{
+  margin-top:20px;
+  padding:12px 28px;
+  border:none;
+  border-radius:30px;
+  background:#ff7aa2;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* CARD COMMON */
+.card{
+  background:white;
+  border-radius:24px;
+  padding:20px;
+  margin:10px auto;
+  max-width:360px;
+  box-shadow:0 0 25px rgba(255,170,200,.4);
+}
+
+/* FLIP CARDS */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
+  max-width:380px;
+}
+.flip{
+  perspective:1000px;
+}
+.flip-inner{
+  position:relative;
+  width:100%;
+  height:120px;
+  transform-style:preserve-3d;
+  transition:transform .8s;
+}
+.flip.active .flip-inner{transform:rotateY(180deg)}
+
+.front,.back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  backface-visibility:hidden;
+  border:2px solid white;
+  box-shadow:0 0 18px rgba(255,255,255,.9);
+}
+
+/* FRONT */
+.front{
+  background:linear-gradient(135deg,#ffd1e1,#ffc1d6);
+}
+.front span{
+  font-size:42px;
+  font-family:'Pacifico',cursive;
+  color:white;
+  text-shadow:0 0 12px rgba(255,255,255,.9);
+}
+
+/* BACK */
+.back{
+  background:white;
+  transform:rotateY(180deg);
+  padding:10px;
+  font-size:13px;
+}
+
+/* EDGE BUTTON */
+.edge{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  color:#e75480;
+  font-weight:500;
+  cursor:pointer;
+}
+
+/* ENVELOPE */
+.envelope{
+  width:120px;
+  height:80px;
+  background:#ffb6c1;
+  position:relative;
+  border-radius:10px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.05)}
+  100%{transform:scale(1)}
+}
+
+/* FINAL IMAGE */
+.final-img{
+  width:160px;
+  animation:jump 2s ease-in-out infinite;
+  filter:drop-shadow(0 0 22px rgba(255,160,200,.8));
+}
+@keyframes jump{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-28px)}
+  100%{transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0;i<35;i++){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerText="💗";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDelay=Math.random()*8+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+<!-- SCREEN 1 -->
+<div class="screen active" id="s1">
+  <h1>Hey…</h1>
+  <p>Just a small smile for you 🤍</p>
+  <button onclick="go(2)">Tap gently</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="s2">
+  <h1 id="scan">Measuring cuteness…</h1>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen" id="s3">
+  <div class="card">
+    <h1>Official Report</h1>
+    <p>Name: Hetsi</p>
+    <p>Birth Date: 13 October 2009</p>
+    <p>First Meet: 30 November 2023</p>
+    <p>મારા તમે શું થાવ છો 🤍</p>
+    <p>795 Days</p>
+    <hr>
+    <p>Cuteness: Unlimited</p>
+    <p>Sweetness: Overload</p>
+    <p>Kindness: Pure</p>
+    <p>Nature: Naturally Beautiful</p>
+    <hr>
+    <p><b>254 Days Remaining ⏳</b></p>
+    <p><b>TOTAL: 100% DIAMOND 💎</b></p>
+    <button onclick="go(4)">Continue →</button>
+  </div>
+</div>
+
+<!-- SCREEN 4 -->
+<div class="screen" id="s4">
+  <h1>Little things 🤍</h1>
+  <div class="card-grid">
+    <div class="flip" onclick="flip(this)"><div class="flip-inner">
+      <div class="front"><span>H</span></div>
+      <div class="back">Dear Moon, you are the reason of my happiness 🌙</div>
+    </div></div>
+
+    <div class="flip" onclick="flip(this)"><div class="flip-inner">
+      <div class="front"><span>H</span></div>
+      <div class="back">Dear Hetsi, certified cutieee ✨</div>
+    </div></div>
+
+    <div class="flip" onclick="flip(this)"><div class="flip-inner">
+      <div class="front"><span>H</span></div>
+      <div class="back">Dear silent eyes, you look beautifully you 💫</div>
+    </div></div>
+
+    <div class="flip" onclick="flip(this)"><div class="flip-inner">
+      <div class="front"><span>H</span></div>
+      <div class="back">Dear Smiling Pie, you look beautiful when you smile 🌸</div>
+    </div></div>
+
+    <div class="flip" onclick="flip(this)"><div class="flip-inner">
+      <div class="front"><span>H</span></div>
+      <div class="back">Dear Heti, your heart is kind and comforting 🤍</div>
+    </div></div>
+
+    <div class="flip" onclick="flip(this)"><div class="flip-inner">
+      <div class="front"><span>H</span></div>
+      <div class="back">You are my best wali chai ☕🤍</div>
+    </div></div>
+  </div>
+
+  <div class="edge" onclick="go(5)">One more thing →</div>
+</div>
+
+<!-- SCREEN 5 -->
+<div class="screen" id="s5">
+  <div class="envelope"></div>
+  <p>Tap to read letter</p>
+  <button onclick="go(6)">Open</button>
+</div>
+
+<!-- SCREEN 6 -->
+<div class="screen" id="s6">
+  <div class="card">
+    <h1>For Hetsi ji 💖</h1>
+    <p>
+Hey cutiee, this is for you.  
+You hold a very special and first position in my heart.  
+For lifetime, just you and your smile will be my priority.  
+It’s my fortune that someone exactly like you is in my life.  
+You are my expression queen.  
+I will always try to make you smile and feel special.  
+I hope this surprise made you smile 🤍
+    </p>
+    <button onclick="go(7)">One last thing →</button>
+  </div>
+</div>
+
+<!-- SCREEN 7 -->
+<div class="screen" id="s7">
+  <img src="final.png" class="final-img">
+  <h1>You’re the best</h1>
+  <p>Don’t ever forget it</p>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+}
+function flip(el){el.classList.toggle("active")}
+
+const scans=[
+"Measuring cuteness…",
+"Scanning sweetness…",
+"Checking the pretty smile…",
+"Analyzing kindness of heart…",
+"Detecting happiness vibes…",
+"Confirming: naturally beautiful ✨"
+];
+let i=0;
+setInterval(()=>{
+  if(document.getElementById("s2").classList.contains("active")){
+    document.getElementById("scan").innerText=scans[i%scans.length];
+    i++;
+    if(i>scans.length+1)go(3);
+  }
+},1200);
+</script>
+
+</body>
+</html>
